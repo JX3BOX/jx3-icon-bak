@@ -22,3 +22,6 @@ jobs:
           access-key-id: ${{secrets.AccessKey_ID}}
           access-key-secret: ${{secrets.Access_Key_Secret}}
       - run: ossutil cp -rf icon oss://jx3box/icon/
+      - run: ossutil cp -rf emotion oss://jx3box/pic/emotion
+      - run: ossutil cp -rf loading oss://jx3box/pic/loading
+      - run: ossutil cp -rf map oss://jx3box/pic/map
