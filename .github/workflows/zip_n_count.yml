@@ -22,8 +22,29 @@ jobs:
       uses: actions/checkout@v2
       with:
         persist-credentials: false
-    
-    - name: Run a multi-line script
+
+    - name: Zip files
+      run: |
+        cd emotion/official_mini
+        for file in `ls $1`
+        do
+        if [ -d $file ]
+        then
+        zip -r $file.zip ./$file/*.gif
+        fi
+        done
+        cd ../..
+    - name: Commit files
+      run: |
+        git config --local user.email "fakedestinyck@gmail.com"
+        git config --local user.name "fakedestinyck"
+        git add -A
+        git commit -m "Add zip files"        
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}   
+    - name: Count icon numbers
       run: |
         cd icon
         a=$(ls -l | grep "^-" | wc -l)
