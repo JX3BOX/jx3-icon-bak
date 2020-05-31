@@ -25,3 +25,4 @@ jobs:
       - run: ossutil cp -rf emotion oss://jx3box/pic/emotion
       - run: ossutil cp -rf loading oss://jx3box/pic/loading
       - run: ossutil cp -rf map oss://jx3box/pic/map
+      - run: ossutil cp -rf furniture oss://jx3box/pic/furniture
