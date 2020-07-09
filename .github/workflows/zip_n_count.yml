@@ -5,8 +5,8 @@ name: CountIconNum
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  push:
-    branches: [ master ]
+  release:
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,43 +17,43 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        persist-credentials: false
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
 
-    - name: Zip files
-      run: |
-        cd emotion/official_mini
-        for file in `ls $1`
-        do
-        if [ -d $file ]
-        then
-        zip -r $file.zip ./$file/*.gif
-        fi
-        done
-        cd ../..
-    - name: Commit files
-      run: |
-        git config --local user.email "fakedestinyck@gmail.com"
-        git config --local user.name "fakedestinyck"
-        git add -A
-        git commit -m "Add zip files"        
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}   
-    - name: Count icon numbers
-      run: |
-        cd icon
-        a=$(ls -l | grep "^-" | wc -l)
-        echo "{\"icon\": $a}" > ../tools/icon.json
-        
-    # Runs a set of commands using the runners shell
-    - name: Github Pages
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: tools # The folder the action should deploy.
+      - name: Zip files
+        run: |
+          cd emotion/official_mini
+          for file in `ls $1`
+          do
+          if [ -d $file ]
+          then
+          zip -r $file.zip ./$file/*.gif
+          fi
+          done
+          cd ../..
+      - name: Commit files
+        run: |
+          git config --local user.email "fakedestinyck@gmail.com"
+          git config --local user.name "fakedestinyck"
+          git add -A
+          git commit -m "Add zip files"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Count icon numbers
+        run: |
+          cd icon
+          a=$(ls -l | grep "^-" | wc -l)
+          echo "{\"icon\": $a}" > ../tools/icon.json
+
+      # Runs a set of commands using the runners shell
+      - name: Github Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: tools # The folder the action should deploy.

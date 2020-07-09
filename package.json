@@ -1,0 +1,26 @@
+{
+  "name": "jx3-icon",
+  "version": "1.0.0",
+  "description": "美术资源",
+  "main": "index.js",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    "glob": "^7.1.6"
+  },
+  "scripts": {
+    "count": "node ./tools/stat.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JX3BOX/jx3-icon.git"
+  },
+  "keywords": [],
+  "author": "iRuxu <rx6@qq.com> (https://iruxu.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JX3BOX/jx3-icon/issues"
+  },
+  "homepage": "https://github.com/JX3BOX/jx3-icon#readme"
+}
