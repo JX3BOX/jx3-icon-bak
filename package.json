@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "description": "美术资源",
   "main": "index.js",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
-    "glob": "^7.1.6"
+    "glob": "^7.2.0"
   },
   "scripts": {
-    "count": "node ./tools/stat.js"
+    "count": "node ./tools/stat.js",
+    "map": "node ./tools/map.js"
   },
   "repository": {
     "type": "git",
